@@ -5,13 +5,13 @@ import PropTypes from 'prop-types'
 export default function Navbar(props) {
   return (
     <>
-     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+     <nav className={`navbar navbar-expand-lg navbar-${props.mode}`} style={{backgroundColor: props.mode === 'dark'?'#000218': '#E1EFF1'}}>
         <a className="navbar-brand" href="/">{props.title}</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent" >
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
@@ -22,8 +22,12 @@ export default function Navbar(props) {
           </ul>
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button className="btn my-2 my-sm-0" style={{color: props.mode === 'dark'?'white': 'white', backgroundColor: props.mode === 'dark'?'#35CFE0': '#188FA1'}} type="submit">Search</button>
           </form>
+          <div className={`form-check form-switch mx-5 text-${props.mode === 'light'?'dark':'light'}`}>
+            <input className="form-check-input" type="checkbox" onClick={props.togglemode} role="switch" id="switchCheckDefault"/>
+            <label className="form-check-label" htmlFor="switchCheckDefault">Dark Mode</label>
+          </div>
         </div>
      </nav>
     </>
